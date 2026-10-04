@@ -84,38 +84,55 @@
             line-height:1.7;
             margin:6px 0;
         }
+        .main img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin:12px 0;
+            box-shadow: 0 2px 8px #00000015;
+        }
+        .main video, .main iframe {
+            max-width:100%;
+            border-radius:8px;
+            margin:12px 0;
+        }
+        .warn-box {
+            background-color: #fff9e6;
+            border-left:5px solid #f59e0b;
+            padding:16px 20px;
+            margin:20px 0;
+        }
     </style>
 </head>
 <body>
     <!-- 左侧菜单 -->
     <div class="sidebar">
         <ul>
-            <li><a href="#">1.首页</a></li>
-            <li><a href="#">2.线上教学研讨</a></li>
-            <li><a href="#">3.教学研讨会</a></li>
-            <li><a href="#">4.清华操作系统课 2026</a></li>
+            <li><a href="#home">1.首页</a></li>
+            <li><a href="#discuss">2.线上教学研讨</a></li>
+            <li><a href="#meeting">3.教学研讨会</a></li>
+            <li><a href="#os2026">4.清华操作系统课 2026</a></li>
             <li>
-                <a href="#">5.清华操作系统专题训练课 2026</a>
+                <a href="#ostrain">5.清华操作系统专题训练课 2026</a>
                 <ul>
-                    <li><a href="#" class="indent-1">5.1.课程安排</a></li>
-                    <li><a href="#" class="indent-1">5.2.课程通知</a></li>
-                    <li><a href="#" class="indent-1 active">5.3.课后练习</a>
+                    <li><a href="#schedule" class="indent-1">5.1.课程安排</a></li>
+                    <li><a href="#notice" class="indent-1">5.2.课程通知</a></li>
+                    <li><a href="#exercise" class="indent-1 active">5.3.课后练习</a>
                         <ul>
-                            <li><a href="#" class="indent-2">关于课后练习完成要求的说明</a></li>
-                            <li><a href="#" class="indent-2">第2次课后练习(第一周周四)</a></li>
-                            <li><a href="#" class="indent-2">第1次课后练习(第一周周一)</a></li>
+                            <li><a href="#desc" class="indent-2">关于课后练习完成要求的说明</a></li>
+                            <li><a href="#task2" class="indent-2">第2次课后练习(第一周周四)</a></li>
+                            <li><a href="#task1" class="indent-2">第1次课后练习(第一周周一)</a></li>
                         </ul>
                     </li>
                 </ul>
             </li>
-            <li><a href="#">6.开源操作系统社区活动</a></li>
-            <li><a href="#">7.贡献指南</a></li>
+            <li><a href="#opensource">6.开源操作系统社区活动</a></li>
+            <li><a href="#contribute">7.贡献指南</a></li>
         </ul>
     </div>
 
     <!-- 右侧正文 -->
     <div class="main">
-        <h1>2026秋季学期操作系统专题训练课后练习</h1>
+        <h1 id="ostrain">2026秋季学期操作系统专题训练课后练习</h1>
         <p>参考：</p>
         <ul>
             <li>2025秋季学期操作系统专题训练课后练习</li>
@@ -123,15 +140,37 @@
             <li>2023秋季学期操作系统专题训练课后练习</li>
         </ul>
 
-        <h2>关于课后练习完成要求的说明</h2>
+        <div class="warn-box">
+            <h3>⚠️ 重要提醒</h3>
+            <p>1. <strong>免费</strong>：公开仓库的 GitHub Pages 永久免费，没有流量费。</p>
+            <p>2. <strong>国内访问</strong>：github.io 在国内有时候访问不稳定，打开会慢或者打不开。</p>
+            <p>3. <strong>只能静态网页</strong>，不能运行 PHP、Python 后端程序。</p>
+            <p>4. 现在你正好在 VSCode 练习 Git，后续就可以：本地写文档 → git add/commit/push 发布。</p>
+        </div>
+
+        <h2 id="desc">关于课后练习完成要求的说明</h2>
         <p>1. 课后练习是供有兴趣的同学在课后进行主动练习时的一类练习题目。</p>
         <p>2. 通常这些课后练习是比较开放和存在多种回答的，通常没有唯一的正确答案。</p>
 
-        <h2>第2次课后练习(第一周周四)</h2>
+        <h2 id="task2">第2次课后练习(第一周周四)</h2>
         <p>请在github上创建一个公开的仓库，用于维护自己的操作系统专题训练课实验代码、文档和开发过程；然后在仓库中提交专题训练课的实验目标描述文档。完成上述操作后，请将仓库地址和commit ID信息到雨课堂。</p>
         <ul>
             <li>开发过程自动记录和提交的部署帮助：在代码仓库中部署该脚本后，IDE开发环境会在做实验过程中记录代码阅读、编辑、编译运行等操作，特别是与AI编程工具交互信息，并自动提交到代码仓库中。</li>
         </ul>
+
+        <h2>实验截图示例（图片）</h2>
+        <p>下面这行会加载仓库里的 os_exp.png 图片，把截图文件放到项目根目录即可。</p>
+        <img src="os_exp.png" alt="操作系统实验截图">
+
+        <h2>本地演示视频示例</h2>
+        <p>把 demo.mp4 放到项目根目录，网页就可以直接播放。</p>
+        <video controls width="700">
+            <source src="demo.mp4" type="video/mp4">
+            您的浏览器不支持视频播放
+        </video>
+
+        <h2>B站视频嵌入示例（推荐，不占用仓库空间）</h2>
+        <iframe src="https://player.bilibili.com/player.html?aid=12345678" width="700" height="400" frameborder="0" allowfullscreen></iframe>
     </div>
 </body>
 </html>
