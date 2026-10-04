@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-<title>我的页面</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的 GitHub Pages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", system-ui, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 48px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.18);
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 42px;
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.7;
+            opacity: 0.92;
+            margin-bottom: 24px;
+        }
+        .tip {
+            display: inline-block;
+            padding: 10px 22px;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 999px;
+            font-size:15px;
+        }
+    </style>
 </head>
 <body>
-<h1>Hello GitHub Pages</h1>
-<p>这是我写的网页</p>
+    <div class="card">
+        <h1>👋 Hello GitHub Pages</h1>
+        <p>欢迎来到我的个人网页<br>这是使用 Git + GitHub Pages 部署的静态站点</p>
+        <div class="tip">持续更新中...</div>
+    </div>
 </body>
 </html>
