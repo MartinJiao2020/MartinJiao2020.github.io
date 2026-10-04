@@ -3,57 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的 GitHub Pages</title>
+    <title>操作系统专题训练</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Microsoft YaHei", system-ui, sans-serif;
+            font-family: "Microsoft YaHei", system-ui, -apple-system, sans-serif;
         }
         body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: #fff;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            min-height: 100vh;
+            color: #222;
+            background-color: #ffffff;
         }
-        .card {
-            background: rgba(255,255,255,0.12);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 48px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.18);
-            max-width: 600px;
-            text-align: center;
+        /* 左侧侧边导航栏 */
+        .sidebar {
+            width: 240px;
+            background-color: #f8f9fa;
+            border-right: 1px solid #e5e7eb;
+            padding: 24px 8px;
+            flex-shrink: 0;
+            overflow-y: auto;
+            height: 100vh;
+            position: sticky;
+            top:0;
         }
-        h1 {
-            font-size: 42px;
-            margin-bottom: 16px;
+        .sidebar ul {
+            list-style: none;
         }
-        p {
-            font-size: 18px;
-            line-height: 1.7;
-            opacity: 0.92;
+        .sidebar li {
+            margin: 4px 0;
+        }
+        .sidebar a {
+            display: block;
+            padding: 6px 12px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+        .sidebar a:hover {
+            background-color: #eef1f5;
+        }
+        .sidebar a.active {
+            background-color: #e1eaff;
+            color: #2563eb;
+        }
+        .sidebar .indent-1 {
+            padding-left: 20px;
+        }
+        .sidebar .indent-2 {
+            padding-left: 40px;
+        }
+
+        /* 右侧主内容区域 */
+        .main {
+            flex:1;
+            padding: 40px 60px;
+            overflow-y:auto;
+        }
+        .main h1 {
+            font-size: 32px;
             margin-bottom: 24px;
         }
-        .tip {
-            display: inline-block;
-            padding: 10px 22px;
-            background-color: rgba(255,255,255,0.2);
-            border-radius: 999px;
-            font-size:15px;
+        .main h2 {
+            font-size:24px;
+            margin: 36px 0 16px;
+        }
+        .main p {
+            font-size:17px;
+            line-height:1.7;
+            margin:12px 0;
+        }
+        .main ul {
+            padding-left:24px;
+            margin:12px 0;
+        }
+        .main li {
+            line-height:1.7;
+            margin:6px 0;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>👋 Hello GitHub Pages</h1>
-        <p>欢迎来到我的个人网页<br>这是使用 Git + GitHub Pages 部署的静态站点</p>
-        <div class="tip">持续更新中...</div>
+    <!-- 左侧菜单 -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">1.首页</a></li>
+            <li><a href="#">2.线上教学研讨</a></li>
+            <li><a href="#">3.教学研讨会</a></li>
+            <li><a href="#">4.清华操作系统课 2026</a></li>
+            <li>
+                <a href="#">5.清华操作系统专题训练课 2026</a>
+                <ul>
+                    <li><a href="#" class="indent-1">5.1.课程安排</a></li>
+                    <li><a href="#" class="indent-1">5.2.课程通知</a></li>
+                    <li><a href="#" class="indent-1 active">5.3.课后练习</a>
+                        <ul>
+                            <li><a href="#" class="indent-2">关于课后练习完成要求的说明</a></li>
+                            <li><a href="#" class="indent-2">第2次课后练习(第一周周四)</a></li>
+                            <li><a href="#" class="indent-2">第1次课后练习(第一周周一)</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#">6.开源操作系统社区活动</a></li>
+            <li><a href="#">7.贡献指南</a></li>
+        </ul>
+    </div>
+
+    <!-- 右侧正文 -->
+    <div class="main">
+        <h1>2026秋季学期操作系统专题训练课后练习</h1>
+        <p>参考：</p>
+        <ul>
+            <li>2025秋季学期操作系统专题训练课后练习</li>
+            <li>2024秋季学期操作系统专题训练课后练习</li>
+            <li>2023秋季学期操作系统专题训练课后练习</li>
+        </ul>
+
+        <h2>关于课后练习完成要求的说明</h2>
+        <p>1. 课后练习是供有兴趣的同学在课后进行主动练习时的一类练习题目。</p>
+        <p>2. 通常这些课后练习是比较开放和存在多种回答的，通常没有唯一的正确答案。</p>
+
+        <h2>第2次课后练习(第一周周四)</h2>
+        <p>请在github上创建一个公开的仓库，用于维护自己的操作系统专题训练课实验代码、文档和开发过程；然后在仓库中提交专题训练课的实验目标描述文档。完成上述操作后，请将仓库地址和commit ID信息到雨课堂。</p>
+        <ul>
+            <li>开发过程自动记录和提交的部署帮助：在代码仓库中部署该脚本后，IDE开发环境会在做实验过程中记录代码阅读、编辑、编译运行等操作，特别是与AI编程工具交互信息，并自动提交到代码仓库中。</li>
+        </ul>
     </div>
 </body>
 </html>
