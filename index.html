@@ -1,176 +1,55 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>操作系统专题训练</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", system-ui, -apple-system, sans-serif;
-        }
-        body {
-            display: flex;
-            min-height: 100vh;
-            color: #222;
-            background-color: #ffffff;
-        }
-        /* 左侧侧边导航栏 */
-        .sidebar {
-            width: 240px;
-            background-color: #f8f9fa;
-            border-right: 1px solid #e5e7eb;
-            padding: 24px 8px;
-            flex-shrink: 0;
-            overflow-y: auto;
-            height: 100vh;
-            position: sticky;
-            top:0;
-        }
-        .sidebar ul {
-            list-style: none;
-        }
-        .sidebar li {
-            margin: 4px 0;
-        }
-        .sidebar a {
-            display: block;
-            padding: 6px 12px;
-            color: #333;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 15px;
-        }
-        .sidebar a:hover {
-            background-color: #eef1f5;
-        }
-        .sidebar a.active {
-            background-color: #e1eaff;
-            color: #2563eb;
-        }
-        .sidebar .indent-1 {
-            padding-left: 20px;
-        }
-        .sidebar .indent-2 {
-            padding-left: 40px;
-        }
-
-        /* 右侧主内容区域 */
-        .main {
-            flex:1;
-            padding: 40px 60px;
-            overflow-y:auto;
-        }
-        .main h1 {
-            font-size: 32px;
-            margin-bottom: 24px;
-        }
-        .main h2 {
-            font-size:24px;
-            margin: 36px 0 16px;
-        }
-        .main p {
-            font-size:17px;
-            line-height:1.7;
-            margin:12px 0;
-        }
-        .main ul {
-            padding-left:24px;
-            margin:12px 0;
-        }
-        .main li {
-            line-height:1.7;
-            margin:6px 0;
-        }
-        .main img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin:12px 0;
-            box-shadow: 0 2px 8px #00000015;
-        }
-        .main video, .main iframe {
-            max-width:100%;
-            border-radius:8px;
-            margin:12px 0;
-        }
-        .warn-box {
-            background-color: #fff9e6;
-            border-left:5px solid #f59e0b;
-            padding:16px 20px;
-            margin:20px 0;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>文档</title>
+<style>
+/* 你的侧边栏、active、hover样式不变 */
+.sidebar{width:200px;position:fixed;top:0;left:0;height:100%;background:#f5f5f5;padding:10px;}
+.main{margin-left:220px;padding:20px;}
+.sidebar a{display:block;padding:6px;text-decoration:none;color:#333;}
+.sidebar a:hover{background:#eef1f5;}
+.sidebar a.active{background:red;color:#fff;}
+</style>
 </head>
 <body>
-    <!-- 左侧菜单 -->
-    <div class="sidebar">
-        <ul>
-            <li><a href="#km1">1.科目1</a></li>
-            <li><a href="#km2">2.科目2</a></li>
-            <li><a href="#km3">3.科目3</a></li>
-            <li><a href="#km4">4.科目4</a></li>
-            <li>
-                <a href="#km5">5.科目5</a>
-                <ul>
-                    <li><a href="#km5.1" class="indent-1">5.1.课程安排</a></li>
-                    <li><a href="#km5.2" class="indent-1">5.2.课程通知</a></li>
-                    <li><a href="#km5.3" class="indent-1 active">5.3.课后练习</a>
-                        <ul>
-                            <li><a href="#km5.1.1" class="indent-2">关于课后练习完成要求的说明</a></li>
-                            <li><a href="#task2" class="indent-2">第2次课后练习(第一周周四)</a></li>
-                            <li><a href="#task1" class="indent-2">第1次课后练习(第一周周一)</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="#opensource">6.开源操作系统社区活动</a></li>
-            <li><a href="#contribute">7.贡献指南</a></li>
-        </ul>
-    </div>
+<div class="sidebar">
+  <ul style="list-style:none;padding:0;">
+    <!-- 注意：href改成 #，自定义data-page记录要加载的文件 -->
+    <li><a href="#" data-page="km1.html">1.科目1</a></li>
+    <li><a href="#" data-page="km2.html">2.科目2</a></li>
+    <li><a href="#" data-page="km3.html">3.科目3</a></li>
+  </ul>
+</div>
 
-    <!-- 右侧正文 -->
-    <div class="main">
-        <h1 id="ostrain">2026秋季学期操作系统专题训练课后练习</h1>
-        <p>参考：</p>
-        <ul>
-            <li>2025秋季学期操作系统专题训练课后练习</li>
-            <li>2024秋季学期操作系统专题训练课后练习</li>
-            <li>2023秋季学期操作系统专题训练课后练习</li>
-        </ul>
+<div class="main" id="contentBox">
+  <!-- 这里用来放加载进来的内容，初始可以放欢迎文字 -->
+  <p>请点击左侧菜单</p>
+</div>
 
-        <div class="warn-box">
-            <h3>⚠️ 重要提醒</h3>
-            <p>1. <strong>免费</strong>：公开仓库的 GitHub Pages 永久免费，没有流量费。</p>
-            <p>2. <strong>国内访问</strong>：github.io 在国内有时候访问不稳定，打开会慢或者打不开。</p>
-            <p>3. <strong>只能静态网页</strong>，不能运行 PHP、Python 后端程序。</p>
-            <p>4. 现在你正好在 VSCode 练习 Git，后续就可以：本地写文档 → git add/commit/push 发布。</p>
-        </div>
+<script>
+const allMenuLinks = document.querySelectorAll('.sidebar a');
+const contentBox = document.getElementById('contentBox');
 
-        <h2 id="desc">关于课后练习完成要求的说明</h2>
-        <p>1. 课后练习是供有兴趣的同学在课后进行主动练习时的一类练习题目。</p>
-        <p>2. 通常这些课后练习是比较开放和存在多种回答的，通常没有唯一的正确答案。</p>
+allMenuLinks.forEach(link => {
+  link.onclick = function(e){
+    e.preventDefault(); // 阻止a标签默认跳转行为
 
-        <h2 id="task2">第2次课后练习(第一周周四)</h2>
-        <p>请在github上创建一个公开的仓库，用于维护自己的操作系统专题训练课实验代码、文档和开发过程；然后在仓库中提交专题训练课的实验目标描述文档。完成上述操作后，请将仓库地址和commit ID信息到雨课堂。</p>
-        <ul>
-            <li>开发过程自动记录和提交的部署帮助：在代码仓库中部署该脚本后，IDE开发环境会在做实验过程中记录代码阅读、编辑、编译运行等操作，特别是与AI编程工具交互信息，并自动提交到代码仓库中。</li>
-        </ul>
+    // 1. 移动小红贴纸 active
+    allMenuLinks.forEach(item => item.classList.remove('active'));
+    this.classList.add('active');
 
-        <h2>实验截图示例（图片）</h2>
-        <p>下面这行会加载仓库里的 os_exp.png 图片，把截图文件放到项目根目录即可。</p>
-        <img src="os_exp.png" alt="操作系统实验截图">
+    // 2. 获取要加载的文件名
+    const pageFile = this.dataset.page;
 
-        <h2>本地演示视频示例</h2>
-        <p>把 demo.mp4 放到项目根目录，网页就可以直接播放。</p>
-        <video controls width="700">
-            <source src="demo.mp4" type="video/mp4">
-            您的浏览器不支持视频播放
-        </video>
-
-        <h2>B站视频嵌入示例（推荐，不占用仓库空间）</h2>
-        <iframe src="https://player.bilibili.com/player.html?aid=12345678" width="700" height="400" frameborder="0" allowfullscreen></iframe>
-    </div>
+    // 3. 加载外部html，放到右侧contentBox
+    fetch(pageFile)
+      .then(res => res.text())
+      .then(html => {
+        contentBox.innerHTML = html;
+      })
+  }
+})
+</script>
 </body>
 </html>
