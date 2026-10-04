@@ -24,12 +24,14 @@
   align-items:center;
   gap:12px;
   padding:0 12px;
-  border-bottom:1px solid #e30505;
+  background: #cb0c0c;
+  border-bottom:1px solid #eee;
 }
 #toggleSidebar{
   border:none;
   background:none;
   font-size:20px;
+  color:#19e806;
   cursor:pointer;
 }
 .sidebar{
@@ -47,11 +49,14 @@
 }
 .main{
   margin-left:220px;
-  margin-top:48px;
+  margin-top:0px;
   transition: all 0.3s;
+  padding: 0 20px; /* 上下内边距0，左右20px */
+  padding-top:20px; /* 顶部一点点距离，不会贴死边框 */
 }
 .main.expand{
   margin-left:0px;
+  
 }
 </style>
 </head>
@@ -67,8 +72,8 @@
 
 <div class="main" id="contentBox">
   <!-- 这里用来放加载进来的内容，初始可以放欢迎文字 -->
-  <p>请点击左侧菜单</p>
-</div>
+  <p style="margin:0;margin-top:0;">请点击左侧菜单</p> 
+  </div>
 
 <script>
 const allMenuLinks = document.querySelectorAll('.sidebar a');
