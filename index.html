@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>文档</title>
+
+<!-- 顶部工具栏 -->
+<div class="top-bar">
+  <button id="toggleSidebar">☰</button>
+  <span>操作系统教学交流和资源收集</span>
+</div>
+
 <style>
 /* 你的侧边栏、active、hover样式不变 */
 .sidebar{width:200px;position:fixed;top:0;left:0;height:100%;background:#f5f5f5;padding:10px;}
@@ -10,6 +17,42 @@
 .sidebar a{display:block;padding:6px;text-decoration:none;color:#333;}
 .sidebar a:hover{background:#eef1f5;}
 .sidebar a.active{background:red;color:#fff;}
+
+.top-bar{
+  height:48px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:0 12px;
+  border-bottom:1px solid #eee;
+}
+#toggleSidebar{
+  border:none;
+  background:none;
+  font-size:20px;
+  cursor:pointer;
+}
+.sidebar{
+  position:fixed;
+  top:48px;
+  left:0;
+  width:220px;
+  height:calc(100vh - 48px);
+  background:#f5f5f5;
+  transition: all 0.3s; /* 平滑收起动画 */
+}
+/* 侧边栏收起状态 */
+.sidebar.collapsed{
+  left:-220px;
+}
+.main{
+  margin-left:220px;
+  margin-top:48px;
+  transition: all 0.3s;
+}
+.main.expand{
+  margin-left:0px;
+}
 </style>
 </head>
 <body>
@@ -30,7 +73,14 @@
 <script>
 const allMenuLinks = document.querySelectorAll('.sidebar a');
 const contentBox = document.getElementById('contentBox');
+const toggleBtn = document.getElementById('toggleSidebar');
+const sidebar = document.querySelector('.sidebar');
+const mainBox = document.querySelector('.main');
 
+toggleBtn.onclick = function(){
+  sidebar.classList.toggle('collapsed');
+  mainBox.classList.toggle('expand');
+}
 allMenuLinks.forEach(link => {
   link.onclick = function(e){
     e.preventDefault(); // 阻止a标签默认跳转行为
