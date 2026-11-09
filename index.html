@@ -2,112 +2,193 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<title>文档</title>
-
-
-<!-- 顶部工具栏 -->
-<div class="top-bar">
-  <button id="toggleSidebar">☰</button>
-  <span>这是我一个系统！</span>
-</div>
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>课程互动演示</title>
 <style>
-/* 你的侧边栏、active、hover样式不变 */
-.sidebar{width:200px;position:fixed;top:0;left:0;height:100%;background:#19e806;padding:10px;}
-.main{margin-left:220px;padding:20px;}
-.sidebar a{display:block;padding:6px;text-decoration:none;color:#333;}
-.sidebar a:hover{background:#eef1f5;}
-.sidebar a.active{background:red;color:#ffffff00;}
+:root{
+  --navy900:#0F215C; --navy800:#14296E;
+  --blue600:#2663EB; --blue500:#3B82F5;
+  --amber:#F59E0B;
+  --page:#F5F7FC; --card:#FFFFFF;
+  --line:#E3E8F5; --chip:#EBF0FA;
+  --ink:#1E293B; --ink2:#64748B; --mute:#93A5C4;
+  --serif:"Songti SC","Noto Serif SC","Source Han Serif SC","SimSun",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",
+         "Source Han Sans SC","Noto Sans SC","Helvetica Neue",Arial,sans-serif;
+  --top:56px; --nav:264px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--page);color:var(--ink);
+  font-family:var(--sans);-webkit-font-smoothing:antialiased;
+  display:flex;flex-direction:column;overflow:hidden}
 
-.top-bar{
-  height:48px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:0 12px;
-  background: #cb0c0c;
-  border-bottom:1px solid #eee;
-}
-#toggleSidebar{
-  border:none;
-  background:none;
-  font-size:20px;
-  color:#19e806;
-  cursor:pointer;
-}
-.sidebar{
-  position:fixed;
-  top:48px;
-  left:0;
-  width:220px;
-  height:calc(100vh - 48px);
-  background:#f5f5f5;
-  transition: all 0.3s; /* 平滑收起动画 */
-}
-/* 侧边栏收起状态 */
-.sidebar.collapsed{
-  left:-220px;
-}
-.main{
-  margin-left:220px;
-  margin-top:0px;
-  transition: all 0.3s;
-  padding: 0 20px; /* 上下内边距0，左右20px */
-  padding-top:20px; /* 顶部一点点距离，不会贴死边框 */
-}
-.main.expand{
-  margin-left:0px;
-  
+/* ---------- 顶栏 ---------- */
+.topbar{height:var(--top);flex:none;display:flex;align-items:center;gap:14px;
+  padding:0 18px 0 14px;background:var(--navy900);color:#fff;position:relative;z-index:40}
+.topbar::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;
+  background:linear-gradient(90deg,var(--amber) 0 132px,rgba(255,255,255,.1) 132px)}
+#toggleSidebar{width:36px;height:36px;flex:none;display:inline-flex;align-items:center;
+  justify-content:center;border:none;border-radius:8px;background:rgba(255,255,255,.09);
+  color:#fff;cursor:pointer;transition:background .16s}
+#toggleSidebar:hover{background:rgba(255,255,255,.18)}
+.brand{font-family:var(--serif);font-size:16.5px;font-weight:700;letter-spacing:.02em}
+.brand em{font-style:normal;color:var(--amber)}
+.topbar .tag{margin-left:auto;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:#8DA9DC}
+
+/* ---------- 主体 ---------- */
+.body{flex:1;display:flex;min-height:0}
+
+/* ---------- 侧边栏 ---------- */
+.sidebar{width:var(--nav);flex:none;background:var(--card);border-right:1px solid var(--line);
+  overflow-y:auto;overflow-x:hidden;transition:width .26s ease,transform .26s ease}
+body.nav-hidden .sidebar{width:0;border-right-color:transparent}
+.side-head{padding:20px 20px 10px;font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.side-list{list-style:none;margin:0;padding:0 10px 20px}
+.side-list li{margin-bottom:2px}
+.side-list a{display:block;padding:11px 14px 11px 11px;border-left:3px solid transparent;
+  border-radius:0 8px 8px 0;font-size:14px;color:var(--ink2);text-decoration:none;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  transition:background .15s,color .15s,border-color .15s}
+.side-list a:hover{background:#F2F6FD;color:var(--navy800)}
+.side-list a.active{background:var(--chip);border-left-color:var(--blue600);
+  color:var(--navy900);font-weight:700}
+.side-list .num{display:inline-block;min-width:18px;color:#A7B6D2;
+  font-family:var(--serif);font-size:12.5px;font-weight:700}
+.side-list a.active .num{color:var(--blue600)}
+.side-foot{padding:14px 14px 22px;border-top:1px solid var(--line);margin:0 10px;
+  font-size:11.5px;line-height:1.7;color:var(--mute)}
+
+/* ---------- 内容区 ---------- */
+.content{flex:1;min-width:0;position:relative;padding:16px;display:flex}
+.frame{flex:1;width:100%;border:0;border-radius:14px;background:var(--card);
+  box-shadow:0 2px 10px rgba(15,33,92,.06),0 16px 40px -22px rgba(15,33,92,.22);
+  display:none}
+.frame.on{display:block}
+
+/* ---------- 空态 ---------- */
+.hint{position:absolute;inset:16px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  background:var(--card);border:1px dashed #D3DDF0;border-radius:14px;padding:40px}
+.hint .mark{width:52px;height:52px;border-radius:14px;background:var(--chip);
+  display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.hint h2{margin:0 0 10px;font-family:var(--serif);font-size:22px;
+  color:var(--navy900);font-weight:700}
+.hint p{margin:0;font-size:13.5px;line-height:1.8;color:var(--ink2);max-width:340px}
+.hint .keys{margin-top:22px;font-size:11.5px;color:var(--mute);letter-spacing:.04em}
+.hint kbd{font:600 11px/1 var(--sans);padding:3px 6px;border:1px solid var(--line);
+  border-bottom-width:2px;border-radius:5px;background:#FBFCFE;color:var(--ink2)}
+
+/* ---------- 遮罩（手机端抽屉） ---------- */
+.mask{display:none;position:fixed;inset:var(--top) 0 0 0;background:rgba(15,33,92,.38);
+  z-index:25;backdrop-filter:blur(2px)}
+body.nav-open .mask{display:block}
+
+/* ---------- 手机端 ---------- */
+@media (max-width:900px){
+  .sidebar{position:fixed;top:var(--top);left:0;bottom:0;z-index:30;width:var(--nav);
+    transform:translateX(-100%);box-shadow:none}
+  body.nav-open .sidebar{transform:none;
+    box-shadow:12px 0 32px -12px rgba(15,33,92,.3)}
+  body.nav-hidden .sidebar{width:var(--nav);transform:translateX(-100%)}
+  .content{padding:10px}
+  .hint{inset:10px;padding:28px 20px}
+  .topbar .tag{display:none}
 }
 </style>
 </head>
 <body>
-<div class="sidebar">
-  <ul style="list-style:none;padding:0;">
-    <!-- 注意：href改成 #，自定义data-page记录要加载的文件 -->
-    <li><a href="#" data-page="km1.html">1.科目1</a></li>
-    <li><a href="#" data-page="km2.html">2.科目2</a></li>
-    <li><a href="#" data-page="km3.html">3.科目3</a></li>
-  </ul>
+
+<header class="topbar">
+  <button id="toggleSidebar" aria-label="展开或收起目录">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2.1" stroke-linecap="round">
+      <path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+  <span class="brand">课程<em>互动演示</em></span>
+  <span class="tag">Interactive Lab</span>
+</header>
+
+<div class="body">
+  <aside class="sidebar" id="sidebar">
+    <div class="side-head">演示目录</div>
+    <ul class="side-list" id="menu">
+      <li><a href="#" data-page="km1.html"><span class="num">1</span>科目1</a></li>
+      <li><a href="#" data-page="km2.html"><span class="num">2</span>科目2</a></li>
+      <li><a href="#" data-page="km3.html"><span class="num">3</span>科目3</a></li>
+      <li><a href="#" data-page="lesson4_slam_interactive.html"><span class="num">4</span>SLAM 交互实验室</a></li>
+    </ul>
+    <div class="side-foot">从左侧选择要演示的内容，右侧直接展开，无需跳转。</div>
+  </aside>
+
+  <div class="mask" id="mask"></div>
+
+  <main class="content">
+    <iframe class="frame" id="frame" title="演示内容"></iframe>
+    <div class="hint" id="hint">
+      <div class="mark">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2663EB"
+          stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="15" rx="2.5"/>
+          <path d="M3 9h18M8 19v2M16 19v2"/></svg>
+      </div>
+      <h2>请从左侧选择一个演示</h2>
+      <p>内容会显示在这块区域里，切换时不需要刷新页面。</p>
+      <div class="keys">当前可用：<kbd>4</kbd> SLAM 交互实验室</div>
+    </div>
+  </main>
 </div>
 
-<div class="main" id="contentBox">
-  <!-- 这里用来放加载进来的内容，初始可以放欢迎文字 -->
-  <p style="margin:0;margin-top:0;">请点击左侧菜单</p> 
-  </div>
-
 <script>
-const allMenuLinks = document.querySelectorAll('.sidebar a');
-const contentBox = document.getElementById('contentBox');
-const toggleBtn = document.getElementById('toggleSidebar');
-const sidebar = document.querySelector('.sidebar');
-const mainBox = document.querySelector('.main');
+(function(){
+  var links = [].slice.call(document.querySelectorAll('#menu a'));
+  var frame = document.getElementById('frame');
+  var hint  = document.getElementById('hint');
+  var body  = document.body;
+  var narrow = function(){ return window.innerWidth <= 900; };
 
-toggleBtn.onclick = function(){
-  sidebar.classList.toggle('collapsed');
-  mainBox.classList.toggle('expand');
-}
-allMenuLinks.forEach(link => {
-  link.onclick = function(e){
-    e.preventDefault(); // 阻止a标签默认跳转行为
+  document.getElementById('toggleSidebar').onclick = function(){
+    if (narrow()) body.classList.toggle('nav-open');
+    else body.classList.toggle('nav-hidden');
+  };
 
-    // 1. 移动小红贴纸 active
-    allMenuLinks.forEach(item => item.classList.remove('active'));
-    this.classList.add('active');
+  document.getElementById('mask').onclick = function(){
+    body.classList.remove('nav-open');
+  };
 
-    // 2. 获取要加载的文件名
-    const pageFile = this.dataset.page;
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      links.forEach(function(x){ x.classList.remove('active'); });
+      a.classList.add('active');
+      frame.src = a.dataset.page;
+      frame.classList.add('on');
+      hint.style.display = 'none';
+      if (narrow()) body.classList.remove('nav-open');
+    });
+  });
 
-    // 3. 加载外部html，放到右侧contentBox
-    fetch(pageFile)
-      .then(res => res.text())
-      .then(html => {
-        contentBox.innerHTML = html;
-      })
+  // 键盘上下键切换
+  document.addEventListener('keydown', function(e){
+    var cur = links.findIndex(function(x){ return x.classList.contains('active'); });
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp'){
+      if (cur === -1) cur = e.key === 'ArrowDown' ? -1 : links.length;
+      var next = e.key === 'ArrowDown' ? Math.min(cur + 1, links.length - 1)
+                                       : Math.max(cur - 1, 0);
+      links[next].click();
+      e.preventDefault();
+    }
+  });
+
+  // 支持地址栏直接定位某一项：#lesson4_slam_interactive.html
+  var direct = decodeURIComponent(location.hash.slice(1));
+  if (direct){
+    var hit = links.filter(function(x){ return x.dataset.page === direct; })[0];
+    if (hit) hit.click();
   }
-})
+})();
 </script>
 </body>
 </html>
-
-
